@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+
+<div class="container" style="margin-top:100px ;">
+
+  <div class="row">
+
+    <div class="col">
+
+
+      <img style="height:400px; width:400px; margin-left: 40px; margin-top:40px;" src="static/images/pexels3.jpg">
+
+      
+    </div>
+
+    <div class="col salesform">
+        <form method="POST">
+            {{ sales_form.hidden_tag()}}
+            <div class="form-group">
+              <strong>
+                {{ sales_form.amount.label }}
+              </strong>
+              {{ sales_form.amount(class="form-control") }}
+              <small></small>
+            </div>
+            <div class="form-group">
+                <strong>
+                  {{ sales_form.discount.label }}
+                </strong>
+                {{ sales_form.discount(class="form-control") }}
+                <small></small>
+              </div>
+              <div class="form-group">
+                <strong>
+                  {{ sales_form.customer.label }}
+                </strong>
+                {{ sales_form.customer(class="form-control") }}
+                <small></small>
+              </div>
+
+
+            {{ sales_form.submit(class="btn btn-success") }}
+          </form>
+    </div>
+
+    
+
+  </div>
+
+</div>
+
+
+
+  
+
+
+
+
+
+{% endblock %}

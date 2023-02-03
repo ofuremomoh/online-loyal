@@ -1,0 +1,27 @@
+    <div class="col-md-12">
+            <h3>{{ photo.collectors|length }} Collectors</h3>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Store Name</th>
+                    <th scope="col">State, city </th>
+                    <th scope="col">address </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for collect in collects %}
+                  <tr>
+                    <th scope="row">1</th>
+                    <td> <a href="{{url_for('main.vendor',username=collect.collector.username)}}">  {{ collect.collector.username}}</a></td>
+                    <td>{{ collect.collector.state}}, {{ collect.collector.city}}</td>
+                    <td>  <a href="{{url_for('main.view_store',username=collect.collector.username)}}"> {{ collect.collector.address}} </a></td>
+                  </tr>
+                  {% endfor %}
+          
+                </tbody>
+              </table>
+    </div>
+    
+
+

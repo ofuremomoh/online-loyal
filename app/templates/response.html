@@ -1,0 +1,13 @@
+<table class="table table-striped custab">
+
+  <tbody>
+{% for row in posts %}  
+   <tr>
+    <td>{{row.name}}     <a href="{{ url_for('main.product', id=row.id)}}"> View </a>  </td>
+
+
+   </tr>
+{% endfor %}
+
+
+

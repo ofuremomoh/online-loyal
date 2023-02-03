@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geocoding service</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+<script>
+
+navigator.geolocation.getCurrentPosition(success);
+
+function success(pos) {
+  var crd = pos.coords;
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+  initMap(crd);
+};
+        var geocoder;
+        var map;
+        
+        var address = '{{user.address}}';
+        function initMap(coordinates) {
+            var location = {'lng': coordinates.longitude, 'lat': coordinates.latitude};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: location
+          
+          });
+          geocoder = new google.maps.Geocoder();
+          codeAddress(geocoder, map);
+          var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+          
+        }
+
+        function codeAddress(geocoder, map) {
+          geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+        
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWe6CqMsm7LmMZd9jytIuPbLy7UiIiTNk" type="text/javascript"></script>
+
+  </body>
+</html>
